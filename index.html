@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locadora de Veículos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <script src="script.js"></script>
+    <header>
+        <h1>Locadora de Veículos</h1>
+    </header>
+    <main>
+        <div class="menu-lateral">
+            <nav>
+                <ul>
+                    <li>Clientes
+                        <ul class="opcoes-menu-lateral">
+                            <li onclick="incluirClienteMenu()">Incluir</li>
+                            <li onclick="consultarClientesMenu()">Consultar</li>
+                        </ul>
+                    </li>
+                    <li>Veículos
+                        <ul class="opcoes-menu-lateral">
+                            <li onclick="incluirVeiculoMenu()">Incluir</li>
+                            <li onclick="consultarVeiculosMenu()">Consultar</li>
+                        </ul>
+                    </li>
+                    <li>Locação
+                        <ul class="opcoes-menu-lateral">
+                            <li onclick="consultarLocacoesMenu()">Consultar</li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="principal">
+            <div class="lista-de-clientes" id="lista-de-clientes">
+                <h2>Lista de Clientes</h2>
+                <hr>
+                <table class="tabela-clientes" id="tabela-clientes">
+                    <thead>
+                        <tr>
+                            <th onclick="ordenarClientes('cpf')" class="coluna-interativa">CPF</th>
+                            <th onclick="ordenarClientes('nome')" class="coluna-interativa">Nome</th>
+                            <th>Data de nascimento</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="inclusao-de-clientes" id="inclusao-de-clientes">
+                <h2>Cadastro de Clientes</h2>
+                <hr>
+                <form id="form-clientes" class="flex-container form">
+                    <div class="flex-item form-row">
+                        <label for="campo-cpf">CPF:</label>
+                        <input type="text" name="campo-cpf" id="campo-cpf">
+                        <span class="erro erro-cpf"></span>
+                    </div>
+                    <div class="flex-item form-row">
+                        <label for="campo-nome">Nome:</label>
+                        <input type="text" name="campo-nome" id="campo-nome">
+                        <span class="erro erro-nome"></span>
+                    </div>
+                    <div class="flex-item form-row">
+                        <label for="campo-data-nasc">Data de Nascimento:</label>
+                        <input type="date" name="campo-data-nasc" id="campo-data-nasc">
+                        <span class="erro erro-data-nasc"></span>
+                    </div>
+                    <div class="flex-item form-row">
+                        <button type="submit">Salvar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="lista-de-veiculos" id="lista-de-veiculos">
+                <h2>Lista de Veículos</h2>
+                <hr>
+                <table class="tabela-veiculos" id="tabela-veiculos">
+                    <thead>
+                        <tr>
+                            <th>Placa</th>
+                            <th>Tipo</th>
+                            <th>Modelo</th>
+                            <th>Ano</th>
+                            <th>Diária</th>
+                            <th>Km</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="inclusao-de-veiculos" id="inclusao-de-veiculos">
+                <h2>Cadastro de Veículos</h2>
+                <hr>
+                <form id="form-veiculos" class="flex-container form">
+                    <div class="flex-item form-row">
+                        <label for="campo-placa">Placa:</label>
+                        <input type="text" name="campo-placa" id="campo-placa">
+                        <span class="erro erro-placa"></span>
+                    </div>
+                    <div class="flex-item form-row">
+                        <p class="paragrafo-label">Tipo:</p>
+
+                        <input type="radio" name="campo-tipo" id="campo-tipo-1" value="Carro">
+                        <label for="campo-tipo-1">Carro</label>
+
+                        <input type="radio" name="campo-tipo" id="campo-tipo-2" value="Moto">
+                        <label for="campo-tipo-2">Moto</label>
+
+                        <span class="erro erro-tipo"></span>
+                    </div>
+                    <div class="flex-item form-row">
+                        <label for="campo-modelo">Modelo:</label>
+                        <input type="text" name="campo-modelo" id="campo-modelo">
+                        <span class="erro erro-modelo"></span>
+                    </div>
+                    <div class="flex-item form-row">
+                        <label for="campo-ano">Ano:</label>
+                        <input type="number" name="campo-ano" id="campo-ano">
+                        <span class="erro erro-ano"></span>
+                    </div>
+                    <div class="flex-item form-row">
+                        <label for="campo-valor-diaria">Valor da diária:</label>
+                        <input type="number" name="campo-valor-diaria" id="campo-valor-diaria">
+                        <span class="erro erro-valor-diaria"></span>
+                    </div>
+                    <div class="flex-item form-row">
+                        <label for="campo-quilometragem">Quilometragem:</label>
+                        <input type="number" name="campo-quilometragem" id="campo-quilometragem">
+                        <span class="erro erro-quilometragem"></span>
+                    </div>
+                    <div class="flex-item form-row">
+                        <button type="submit">Salvar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="lista-de-locacoes" id="lista-de-locacoes">
+                <h2>Locações</h2>
+                <hr>
+                <table class="tabela-locacoes" id="tabela-locacoes">
+                    <thead>
+                        <tr>
+                            <th>CPF</th>
+                            <th>Nome</th>
+                            <th>Placa</th>
+                            <th>Modelo</th>
+                            <th>Diária</th>
+                            <th>Data da locação</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="locacao-de-veiculos" id="locacao-de-veiculos">
+                <h2>Locação de Veículo</h2>
+                <hr>
+                <p class="informacao-cliente" id="informacao-cpf-cliente"></p>
+                <p class="informacao-cliente" id="informacao-nome-cliente"></p>
+                <form id="form-locacao" class="flex-container form">
+                    <table class="tabela-aluguel" id="tabela-aluguel">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Placa</th>
+                                <th>Tipo</th>
+                                <th>Modelo</th>
+                                <th>Ano</th>
+                                <th>Diária</th>
+                                <th>Km</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="flex-item form-row">
+                        <button type="submit">Alugar</button>
+                        <span class="erro erro-aluguel"></span>
+                    </div>
+                </form>
+            </div>
+            <div class="devolucao-de-veiculos" id="devolucao-de-veiculos">
+                <h2>Devolução de Veículo</h2>
+                <hr>
+                <form id="form-devolucao" class="flex-container form">
+                    <div class="flex-item form-row">
+                        <p class="paragrafo-label">CPF:</p>
+                        <p id="paragrafo-valor-cpf" class="paragrafo-valor"></p>
+                    </div>
+                    <div class="flex-item form-row">
+                        <p class="paragrafo-label">Nome:</p>
+                        <p id="paragrafo-valor-nome" class="paragrafo-valor"></p>
+                    </div>
+                    <div class="flex-item form-row">
+                        <p class="paragrafo-label">Placa:</p>
+                        <p id="paragrafo-valor-placa" class="paragrafo-valor"></p>
+                    </div>
+                    <div class="flex-item form-row">
+                        <p class="paragrafo-label">Modelo:</p>
+                        <p id="paragrafo-valor-modelo" class="paragrafo-valor"></p>
+                    </div>
+                    <div class="flex-item form-row">
+                        <p class="paragrafo-label">Diária:</p>
+                        <p id="paragrafo-valor-diaria" class="paragrafo-valor"></p>
+                    </div>
+                    <div class="flex-item form-row">
+                        <p class="paragrafo-label">Quilometragem:</p>
+                        <p id="paragrafo-valor-quilometragem" class="paragrafo-valor"></p>
+                    </div>
+                    <div class="flex-item form-row">
+                        <p class="paragrafo-label">Data da locação:</p>
+                        <p id="paragrafo-valor-data-locacao" class="paragrafo-valor"></p>
+                    </div>
+                    <div class="flex-item form-row">
+                        <label for="campo-quilometragem-atual" class="paragrafo-valor">Quilometragem atual:</label>
+                        <input type="number" name="campo-quilometragem-atual" id="campo-quilometragem-atual">
+                        <span class="erro erro-devolucao"></span>
+                    </div>
+                    <div class="flex-item form-row">
+                        <button type="submit">Devolver</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
